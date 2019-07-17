@@ -15,15 +15,29 @@ class Nqueens:
     def solve(self):
         """Function that will call helper functions"""
         board = [[0] * self.size for i in range(self.size)]
-        print(board)
+        self.place_queen(board, 0)
+        print("Found %d solutions" % self.solutions)
 
     def place_queen(self, board, current_row):
         """Driver function will place a new queen on each row"""
-        pass
+        if current_row == self.size:
+            print(board)
+            self.solutions += 1
+        else:
+            for column in range(self.size):
+                print("row & column ", current_row, column)
+                if self.is_valid(board, current_row, column):
+                    board[current_row][column] = 1
+                    self.place_queen(board, current_row + 1)
 
     def is_valid(self, board, row, column):
         """Helper function to validate position for new queen"""
-        pass
+        for i in range(len(board)):
+            for j in range(len(board)):
+                print("i & j ", i, j)
+                if j - i == 0 and column - row == 0:
+                    return True
+        return False
 
 
 def main():
