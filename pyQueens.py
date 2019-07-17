@@ -31,12 +31,14 @@ class Nqueens:
 
     def is_valid(self, board, row, column):
         """Helper function to validate position for new queen"""
-        for i in range(len(board)):
-            if board[row][i] == 1 or board[i][column] == 1:
+        print(board)
+        for i in range(row):
+            if board[i][column] == 1:
                 return False
-            # for j in range(len(board)):
-            #     if i + j == row + column:
-            #         return False
+        for k in range(len(board)):
+            for j in range(row):
+                if board[k][j] == 1 and abs(k - j) == abs(row - column):
+                    return False
         return True
 
 
