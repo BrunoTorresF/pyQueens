@@ -25,7 +25,6 @@ class Nqueens:
             self.solutions += 1
         else:
             for column in range(self.size):
-                print("row & column ", current_row, column)
                 if self.is_valid(board, current_row, column):
                     board[current_row][column] = 1
                     self.place_queen(board, current_row + 1)
@@ -33,11 +32,12 @@ class Nqueens:
     def is_valid(self, board, row, column):
         """Helper function to validate position for new queen"""
         for i in range(len(board)):
-            for j in range(len(board)):
-                print("i & j ", i, j)
-                if j - i == 0 and column - row == 0:
-                    return True
-        return False
+            if board[row][i] == 1 or board[i][column] == 1:
+                return False
+            # for j in range(len(board)):
+            #     if i + j == row + column:
+            #         return False
+        return True
 
 
 def main():
