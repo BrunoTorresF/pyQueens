@@ -6,16 +6,23 @@ class Nqueens:
     """Solve for all valid solutions of NxN board"""
 
     def __init__(self, N):
+        """Constructor function for Nqueens class"""
         print("Board is %d x %d" % (N, N))
+        self.size = N
+        self.solutions = 0
+        self.solve()
+
+    def solve(self):
+        """Function that will call helper functions"""
+        board = [[0] * self.size for i in range(self.size)]
+        print(board)
+
+    def place_queen(self, board, current_row):
+        """Driver function will place a new queen on each row"""
         pass
 
-    def solve(self, parameter_list):
-        pass
-
-    def place_queen(self, parameter_list):
-        pass
-
-    def is_valid(self, parameter_list):
+    def is_valid(self, board, row, column):
+        """Helper function to validate position for new queen"""
         pass
 
 
