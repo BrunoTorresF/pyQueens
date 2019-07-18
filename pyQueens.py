@@ -26,7 +26,7 @@ class Nqueens:
 
         # Base case - when we reach the end of the board
         if current_row == self.size:
-            self.print_board(board)
+            # self.print_board(board)
             self.solutions += 1
         else:
             """
@@ -67,7 +67,7 @@ class Nqueens:
 
 def main():
     """Call the solver"""
-    n = int(sys.argv[1])
+    n = int(input("How many queens to solve for? "))
     Nqueens(n)
 
 
