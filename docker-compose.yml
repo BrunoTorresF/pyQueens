@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+  pyqueens:
+    build:
+      context: .
+    image: btorresf/pyqueens
+    ports:
+      - '5000:5000'
+    restart: on-failure
+  pyqueens_test:
+    build:
+      context: .
+      dockerfile: ./test/Dockerfile.test
+    volumes:
+      - $PWD:/pyQueens
+    depends_on:
+      - pyqueens
