@@ -1,6 +1,7 @@
 """N Queens Puzzle Solver"""
 import sys
 import time
+from database import Database
 
 
 class Nqueens:
@@ -10,6 +11,7 @@ class Nqueens:
         """Constructor function for Nqueens class"""
         self.size = N
         self.solutions = 0
+        self.all_boards = []
         self.solve()
 
     def solve(self):
@@ -19,7 +21,9 @@ class Nqueens:
         self.place_queens(board, 0)
         t1 = time.time()
         tT = t1 - t0
+        print(self.all_boards)
         print("Found %d solutions in %.3f secs" % (self.solutions, tT))
+        self.save_solutions(self.size, self.solutions, self.all_boards)
 
     def place_queens(self, board, current_row):
         """Recursive driver function will place a new queen on each row"""
@@ -27,7 +31,9 @@ class Nqueens:
         # Base case - when we reach the end of the board
         if current_row == self.size:
             # self.print_full_board(board)
-            self.compress_board(board)
+            small_board = self.compress_board(board)
+            self.all_boards.append(small_board)
+            # print(board)
             self.solutions += 1
         else:
             """
@@ -71,7 +77,11 @@ class Nqueens:
             for position in range(len(board[row])):
                 if board[row][position] == 1:
                     compact_board.append(position)
-        print(compact_board, end="\n------------------\n")
+        return compact_board
+
+    def save_solutions(self, n, solutions, boards):
+        print(boards)
+        Database().insertSolutions(n, solutions, boards)
 
 
 def main():
