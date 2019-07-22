@@ -5,14 +5,26 @@ services:
     build:
       context: .
     image: btorresf/pyqueens
+    env_file: database.conf
     ports:
       - '5000:5000'
-    restart: on-failure
   pyqueens_test:
     build:
       context: .
       dockerfile: ./test/Dockerfile.test
+    env_file: database.conf
     volumes:
       - $PWD:/pyQueens
     depends_on:
       - pyqueens
+  postgres:
+    container_name: postgres
+    image: postgres:latest
+    env_file: database.conf
+    ports:
+      - '5432:5432'
+    volumes:
+      - db_volume:/var/lib/postgresql
+
+volumes:
+  db_volume:
