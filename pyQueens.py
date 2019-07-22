@@ -26,7 +26,8 @@ class Nqueens:
 
         # Base case - when we reach the end of the board
         if current_row == self.size:
-            # self.print_board(board)
+            # self.print_full_board(board)
+            self.compress_board(board)
             self.solutions += 1
         else:
             """
@@ -44,7 +45,7 @@ class Nqueens:
         """Helper function to validate position for new queen"""
         # Check for column conflicts first. No row conflicts because
         # we go row by row
-        for i in range(len(board)):
+        for i in range(self.size):
             if board[i][column] == 1 or board[row][i] == 1:
                 return False
         """
@@ -53,16 +54,24 @@ class Nqueens:
         we compare its potential position to positions of previous queens.
         """
         for k in range(row):
-            for j in range(len(board)):
+            for j in range(self.size):
                 if board[k][j] == 1 and abs(row - k) == abs(column - j):
                     return False
         return True
 
-    def print_board(self, board):
+    def print_full_board(self, board):
         """Print out the board row by row"""
         for row in range(len(board)):
             print("%s\n" % board[row])
-        print("--------------------\n")
+        print("------------------\n")
+
+    def compress_board(self, board):
+        compact_board = []
+        for row in range(len(board)):
+            for position in range(len(board[row])):
+                if board[row][position] == 1:
+                    compact_board.append(position)
+        print(compact_board, end="\n------------------\n")
 
 
 def main():
