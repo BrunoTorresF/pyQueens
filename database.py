@@ -15,7 +15,6 @@ class Database():
         self.connection = engine.connect()
         self.Session = sessionmaker(engine)
         self.session = self.Session()
-        print("DB created")
 
     def insertSolutions(self, n, solutions, boards):
         serial_boards = json.dumps(boards)
@@ -24,7 +23,7 @@ class Database():
                              sols=solutions, boards=serial_boards)
         self.session.add(solution)
         self.session.commit()
-        print('insert successful')
+        print('Solution Saved Successfully')
 
 
 Base = declarative_base()
