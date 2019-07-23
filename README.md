@@ -1,5 +1,18 @@
 # pyQueens - my N-Queens solution with python3
 
+## Run Instructions
+
+**Requires Docker & Docker Compose**
+
+1. Clone repo: `git clone https://github.com/BrunoTorresF/pyQueens.git`
+1. Build containers: `docker-compose up --build -d`
+1. Execute main program: `docker-compose run pyqueens`
+1. Run tests: `docker-compose run pyqueens_test`
+1. Check postgres instance: `docker exec -it postgres psql -U pyqueens -W`
+   1.1 pyqueens role password is: `pyqueens8`
+
+## Problem Context & Instructions
+
 Here's the programming problem: https://en.wikipedia.org/wiki/Eight_queens_puzzle
 
 These are the different aspects of the project you can work on (in order):
