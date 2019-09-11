@@ -39,7 +39,9 @@ class Solutions(Base):
     boards = Column(Text)
 
     def __repr__(self):
-        return "<Solutions(N='%d' = sols='%d'. Boards: '%s'>" % (self.N, self.sols, self.boards)
+        return "<Solutions(N='%d' = sols='%d'. Boards: '%s'>" % (self.N,
+                                                                 self.sols,
+                                                                 self.boards)
 
 
 Base.metadata.create_all(engine)
